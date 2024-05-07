@@ -1,29 +1,36 @@
 import React, { useEffect, useState } from 'react';
-import Licitaciones from '../components/Licitaciones';
+
+import Contratos from '../components/Contratos';
 
 const Dashboard = () => { 
-  const [licitaciones, setLicitaciones] = useState([]);
+  const [contratos, setContratos] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:3000/licitaciones");
-        const licitacionesData = await response.json();
-        setLicitaciones(licitacionesData);
+        const response = await fetch("http://localhost:3000/contratos");
+        const contratosData = await response.json();
+        console.log('Fetched data:', contratosData); 
+        setContratos(contratosData);
+        setIsLoading(false);
       } catch (error) {
         console.error('Error al obtener los contratos:', error);
+        setIsLoading(false);
       }
     };
-
+  
     fetchData();
   }, []);
 
   return (
-    <div>
-      <h1>Contratos</h1>
-      <Licitaciones licitaciones={licitaciones} />
-    </div>
+    <section className='containerDashboard container-fluid '>
+      {isLoading ? (
+        <p>Cargando Archivos .....</p>
+      ) : (
+        <Contratos contratos={contratos} />
+      )}
+    </section>
   );
 }
-
 export default Dashboard;
