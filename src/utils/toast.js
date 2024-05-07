@@ -10,9 +10,9 @@ export const successToast = (message = "") => {
     draggable: true,
     progress: undefined,
     theme: "light",
-    // progressStyle: {
-    //   background: "#5cb85c"
-    // },
+    progressStyle: {
+      background: "#5cb85c"
+    },
   });
 };
 

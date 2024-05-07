@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { errorToast, successToast } from '../utils/toast.js';
+import { validateRequiredFields } from '../middlewares/validacion.js';
 
 const Form = () => {
   const [formData, setFormData] = useState({
@@ -18,6 +20,8 @@ const Form = () => {
     notas: ''
   });
 
+  const requiredFields = ['empresa', 'rut', 'licitacion', 'contacto', 'correo', 'telefono', 'direccion', 'tipo', 'estado', 'monto', 'inicio', 'fin'];
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -28,6 +32,16 @@ const Form = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validar campos obligatorios
+    const emptyFields = validateRequiredFields(formData, requiredFields);
+
+    if (emptyFields.length > 0) {
+      const fieldsString = emptyFields.join(', ');
+      errorToast(`Por favor complete los campos: ${fieldsString}`);
+      return;
+    }
+
     try {
       const response = await fetch('http://localhost:3000/contratos', {
         method: 'POST',
@@ -52,16 +66,15 @@ const Form = () => {
           fin: '',
           notas: ''
         });
-        alert('Contrato agregado exitosamente');
+        successToast('Contrato agregado exitosamente');
       } else {
         throw new Error('Error al agregar contrato');
       }
     } catch (error) {
       console.error('Error:', error);
-      alert('Error al agregar contrato');
+      errorToast('Error al agregar contrato');
     }
   };
-
   return (
     <section className='containerForm'>
       <div className='divForm'>
@@ -219,6 +232,7 @@ const Form = () => {
               />
               <small className="text-muted">Máximo 100 caracteres</small>
             </div>
+            <input type="file" className='form-comtrol' />
             <div className='col-md-4 align-content-center ms-2'>
               <button className='btn btn-primary'>Guardar</button>
               <Link to="/">
