@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import { obtenerContratos} from "./src/models/consultas.js";
+import { obtenerContratos, agregarContrato, eliminarContrato} from "./src/models/consultas.js";
 
 const app = express();
 const PORT = 3000;
@@ -17,14 +17,25 @@ app.get('/contratos', async (req, res) => {
   }
 });
 
-app.post('/contratos', async (req, res, next) => {
-  const { titulo, img, descripcion } = req.body;
+app.post('/contratos', async (req, res) => {
+  const { empresa, rut, licitacion, contacto, correo, telefono, direccion, tipo, estado, monto, inicio, fin, notas } = req.body;
   try {
-    const newPost = await addPost(titulo, img, descripcion);
-    res.status(201).json(newPost);
+    const nuevoContrato = await agregarContrato(empresa, rut, licitacion, contacto, correo, telefono, direccion, tipo, estado, monto, inicio, fin, notas);
+    res.status(201).json(nuevoContrato);
   } catch (error) {
-    console.error("Error al agregar el post:", error);
-    next(error)
+    console.error('Error al agregar contrato:', error);
+    res.status(500).json({ error: 'Error al agregar contrato' });
+  }
+});
+
+app.delete('/contratos/:id', async (req, res) => {
+  try {
+    const postId = parseInt(req.params.id);
+    await eliminarContrato(postId);
+    res.sendStatus(204);
+  } catch (error) {
+    console.error('Error al eliminar contrato:', error);
+    res.status(500).json({ error: 'Error al eliminar contrato' });
   }
 });
 

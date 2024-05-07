@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Details from "./Details";
-import { GiMagnifyingGlass } from "react-icons/gi";
+import { GiMagnifyingGlass} from "react-icons/gi";
+import { BsPencilSquare } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
 const Contratos = ({ contratos }) => {
@@ -33,22 +34,30 @@ const Contratos = ({ contratos }) => {
               <th>TIPO CONTRATO</th>
               <th>ESTADO</th>
               <th>DETALLES</th>
+              <th>OBSERVACIONES</th>
             </tr>
           </thead>
           <tbody>
             {contratos.map((contrato) => (
               <tr key={contrato.id}>
-                <td>{contrato.razon_social}</td>
+                <td>{contrato.empresa}</td>
                 <td>{contrato.rut}</td>
                 <td>{contrato.licitacion}</td>
-                <td>{contrato.tipo_contrato}</td>
-                <td>{contrato.estado_contrato}</td>
+                <td>{contrato.tipo}</td>
+                <td>{contrato.estado}</td>
                 <td>
                   <button
-                    className="btn btn-primary"
+                    className="btn btn-outline-primary"
                     onClick={() => mostrarDetalles(contrato)}
                   >
                     <GiMagnifyingGlass className="icon" />
+                  </button>
+                </td>
+                <td>
+                  <button
+                    className="btn btn-outline-success"
+                  >
+                    <BsPencilSquare className="icon" />
                   </button>
                 </td>
               </tr>

@@ -9,11 +9,11 @@ const pool = new Pool({
   port: process.env.PGPORT,
 });
 
-const agregarContrato = async (razon_social, rut, licitacion, contacto, correo_contacto, telefono_contacto, direccion, tipo_contrato, estado_contrato, monto, inicio_contrato, fin_contrato, notas_internas) => {
+const agregarContrato = async (empresa, rut, licitacion, contacto, correo, telefono, direccion, tipo, estado, monto, inicio, fin, notas) => {
   try {
     const consulta =
-      "INSERT INTO contratos(razon_social, rut, licitacion, contacto, correo_contacto, telefono_contacto, direccion, tipo_contrato, estado_contrato, monto, inicio_contrato, fin_contrato, notas_internas) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING *";
-    const values = [razon_social, rut, licitacion, contacto, correo_contacto, telefono_contacto, direccion, tipo_contrato, estado_contrato, monto, inicio_contrato, fin_contrato, notas_internas]; 
+      "INSERT INTO contratos(empresa, rut, licitacion, contacto, correo, telefono, direccion, tipo, estado, monto, inicio, fin, notas) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING *";
+    const values = [empresa, rut, licitacion, contacto, correo, telefono, direccion, tipo, estado, monto, inicio, fin, notas]; 
     const result = await pool.query(consulta, values);
     console.log("Contrato agregado:", result.rows[0]);
     return result.rows[0];
@@ -37,6 +37,19 @@ const obtenerContratos = async () => {
   }
 };
 
+const eliminarContrato = async (id) => {
+  try {
+    const consulta = "DELETE FROM contratos WHERE id = $1 RETURNING *";
+    const values = [id];
+    const result = await pool.query(consulta, values);
+    console.log("Contrato Eliminado:", result.rows[0]);
+    return result.rows[0];
+  } catch (error) {
+    console.error("Error al eliminar Contrato:", error);
+    throw error;
+  }
+};
 
 
-export { obtenerContratos, agregarContrato };
+
+export { obtenerContratos, agregarContrato, eliminarContrato };

@@ -8,20 +8,21 @@ function Details({ detalleContrato, setDetalleContrato }) {
       </div>
       <h2 className='text-center'>Detalles del Contrato</h2>
       <div className='pt-3'>
-      <p>Razón Social: {detalleContrato.razon_social}</p>
+      <p>Razón Social: {detalleContrato.empresa}</p>
       <p>Rut: {detalleContrato.rut}</p>
       <p>N° Licitación: {detalleContrato.licitacion}</p>
       <p>Monto: {detalleContrato.monto.toLocaleString('es-CL', { style: 'currency', currency: 'CLP' })}</p>
       <p>Contacto: {detalleContrato.contacto}</p>
-      <p>Telefono contacto: {detalleContrato.telefono_contacto}</p>
+      <p>Telefono contacto: {detalleContrato.telefono}</p>
+      <p>Correo: {detalleContrato.correo}</p>
       <p>Dirección: {detalleContrato.direccion}</p>
-      <p>Tipo contrato: {detalleContrato.tipo_contrato}</p>
-      <p>Estado contrato: {detalleContrato.estado_contrato}</p>
-      <p>Inicio contrato: {detalleContrato.inicio_contrato}</p>
-      <p>Fin de contrato: {detalleContrato.fin_contrato}</p>
+      <p>Tipo contrato: {detalleContrato.tipo}</p>
+      <p>Estado contrato: {detalleContrato.estado}</p>
+      <p>Inicio contrato: {detalleContrato.inicio}</p>
+      <p>Fin de contrato: {detalleContrato.fin}</p>
       <ul className='pt-3'>
         <p>OBSERVACIONES</p>
-        <p>{detalleContrato.notas_internas}</p>
+        <p>{detalleContrato.notas}</p>
       </ul>
       </div>
     </div>
