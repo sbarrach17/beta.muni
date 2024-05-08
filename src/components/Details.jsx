@@ -4,9 +4,9 @@ function Details({ detalleContrato, setDetalleContrato }) {
   return (
     <div className="detalle-contrato">
       <div className='d-flex justify-content-end me-3'>
-      <button className='btn btn-close-danger bg-danger text-white' onClick={() => setDetalleContrato(null)}>X</button>
+      {/* <button className='btn btn-close-danger bg-danger text-white' onClick={() => setDetalleContrato(null)}>X</button> */}
       </div>
-      <h2 className='text-center'>Detalles del Contrato</h2>
+      {/* <h2 className='text-center'>Detalles del Contrato</h2> */}
       <div className='pt-3'>
       <p>Razón Social: {detalleContrato.empresa}</p>
       <p>Rut: {detalleContrato.rut}</p>
@@ -20,10 +20,6 @@ function Details({ detalleContrato, setDetalleContrato }) {
       <p>Estado contrato: {detalleContrato.estado}</p>
       <p>Inicio contrato: {detalleContrato.inicio}</p>
       <p>Fin de contrato: {detalleContrato.fin}</p>
-      <ul className='pt-3'>
-        <p>OBSERVACIONES</p>
-        <p>{detalleContrato.notas}</p>
-      </ul>
       </div>
     </div>
   );

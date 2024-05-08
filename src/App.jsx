@@ -3,6 +3,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Dashboard from "./views/Dashboard";
 import Form from "./views/Form";
+import Notes from "./views/Notes";
 
 const App = () => {
   return (
@@ -11,7 +12,9 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<Dashboard />} />
+        <Route path="/" element={<Dashboard />} />
         <Route path="/form" element={<Form />} />      
+        <Route path="/notes" element={<Notes />} />      
       </Routes>
     </div>
   

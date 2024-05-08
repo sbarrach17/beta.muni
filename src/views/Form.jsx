@@ -166,10 +166,11 @@ const Form = () => {
                 value={formData.tipo}
                 onChange={handleInputChange}
               >
-                <option value="">Seleccionar</option>
-                <option value="Compra">Compra</option>
-                <option value="Arriendo">Arriendo</option>
-                <option value="Venta">Venta</option>
+                <option value=""disabled>Seleccionar</option>
+                <option value="Licitacion Publica">Licitación Pública</option>
+                <option value="Convenio Marco">Convenio Marco</option>
+                <option value="Trato Directo">Trato Directo</option>
+                <option value="Compra Agil">Compra Ágil</option>
               </select>
             </div>
             <div className="col-md-4">
@@ -179,11 +180,12 @@ const Form = () => {
                 name="estado"
                 value={formData.estado}
                 onChange={handleInputChange}        >
-                <option value="">Seleccionar</option>
+                <option value="" disabled>Seleccionar</option>
+                <option value="Aceptado">Aceptado</option>
                 <option value="Activo">Activo</option>
                 <option value="En Revisión">En Revisión</option>
                 <option value="Rechazado">Rechazado</option>
-                <option value="Ter,ino">Termino</option>
+                <option value="Termino">Terminado</option>
               </select>
             </div>
             <div className="col-md-4">
@@ -231,9 +233,8 @@ const Form = () => {
                 maxLength="500"
               />
               <small className="text-muted">Máximo 100 caracteres</small>
-            </div>
-            <input type="file" className='form-comtrol' />
-            <div className='col-md-4 align-content-center ms-2'>
+            </div>       
+            <div className='col-md-4'>
               <button className='btn btn-primary'>Guardar</button>
               <Link to="/">
                 <button className='btn btn-danger ms-2'> Volver</button>

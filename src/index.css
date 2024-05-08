@@ -51,11 +51,11 @@ li {
 }
 
 .detalle-contrato {
-  width: 50%;
-  height: 100vh;
+  width: 100%;
+  /* height: 100vh; */
   padding-left: 50px;
-  background-color: rgba(233, 200, 139, 0.616);
-  border-radius: 10px;
+  /* background-color: rgba(233, 200, 139, 0.616); */
+  /* border-radius: 10px; */
 }
 .agregar{
   width: 50%;
@@ -76,7 +76,12 @@ li {
   height: 100vh;
 }
 .formulario{
-  width: 100%;
-  height: 100%;
+  width: 80%;
   background-color: darkgray;
+  border-radius: 10px;
 }
+.btn-group{
+  display: flex;
+  justify-content: center;
+}
+
